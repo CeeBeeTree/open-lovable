@@ -5591,15 +5591,11 @@ Focus on the key sections and content, making it clean and modern while preservi
 
 
 
-    const sandboxPromise = !sandboxData ? createSandbox(true) : Promise.resolve();
+    const sandboxPromise = createSandbox(true);
 
 
 
-    if (!sandboxData) {
-
-      captureUrlScreenshot(displayUrl);
-
-    }
+    captureUrlScreenshot(displayUrl);
 
 
 
