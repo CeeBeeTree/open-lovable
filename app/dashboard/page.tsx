@@ -173,12 +173,6 @@ export default function DashboardPage() {
                         <span>
                           Создан: {new Date(project.created_at).toLocaleDateString('ru-RU')}
                         </span>
-                        {project.sandbox_id && (
-                          <span className="flex items-center gap-1">
-                            <span className="w-2 h-2 bg-green-500 rounded-full" />
-                            Sandbox активен
-                          </span>
-                        )}
                       </div>
                     </div>
                     <div className="flex items-center gap-2 ml-4">
