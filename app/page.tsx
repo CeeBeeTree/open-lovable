@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 
 
@@ -3039,11 +3039,7 @@ Tip: I automatically detect and install npm packages from your code imports (lik
 
     
 
-    if (!sandboxData) {
-
-      sandboxCreating = true;
-
-      addChatMessage('Создание песочницы во время планирования вашего приложения...', 'system');
+    // Always create fresh sandbox\n    sandboxCreating = true;\n    addChatMessage('Создание нового песочницы...', 'system');
 
       sandboxPromise = createSandbox(true).catch((error: any) => {
 
@@ -3053,11 +3049,7 @@ Tip: I automatically detect and install npm packages from your code imports (lik
 
       });
 
-    }
-
-    
-
-    // Determine if this is an edit
+    await sandboxPromise;// Determine if this is an edit
 
     const isEdit = conversationContext.appliedCode.length > 0;
 
