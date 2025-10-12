@@ -27,6 +27,8 @@ export default function SaveProjectButton({ sandboxData, disabled }: SaveProject
     const projectName = prompt('Название проекта:');
     if (!projectName) return;
 
+    const description = prompt('Описание (опционально):');
+
     setSaving(true);
     try {
       const response = await fetch('/api/projects/save', {
@@ -34,15 +36,14 @@ export default function SaveProjectButton({ sandboxData, disabled }: SaveProject
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: projectName,
-          sandboxUrl: sandboxData.url,
-          sandboxId: sandboxData.sandboxId
+          description: description || undefined
         })
       });
 
       const data = await response.json();
       
       if (data.success) {
-        alert('Проект сохранен в личном кабинете!');
+        alert('Проект сохранен! ZIP архив доступен в личном кабинете.');
       } else {
         throw new Error(data.error);
       }

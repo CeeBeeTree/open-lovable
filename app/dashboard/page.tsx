@@ -182,16 +182,32 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 ml-4">
-                      {project.preview_url && (
-                        <a
-                          href={project.preview_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                        >
-                          <ExternalLink size={20} />
-                        </a>
-                      )}
+                      <button
+                        onClick={async () => {
+                          try {
+                            const response = await fetch(`/api/projects/${project.id}/download`);
+                            if (!response.ok) throw new Error('Download failed');
+                            
+                            const blob = await response.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `${project.name}.zip`;
+                            document.body.appendChild(a);
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                            document.body.removeChild(a);
+                          } catch (error) {
+                            alert('Ошибка скачивания проекта');
+                          }
+                        }}
+                        className="p-2 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                        title="Скачать проект"
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
                 </div>

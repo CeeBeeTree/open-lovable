@@ -5,8 +5,6 @@ export interface Project {
   user_id: string;
   name: string;
   description?: string;
-  preview_url?: string;
-  sandbox_id?: string;
   status: 'active' | 'archived';
   created_at: string;
   updated_at: string;
@@ -38,8 +36,6 @@ export async function getUserProjects(options?: {
 export async function saveProject(project: {
   name: string;
   description?: string;
-  sandboxUrl?: string;
-  sandboxId?: string;
 }) {
   const { data: { user } } = await supabase.auth.getUser();
   
@@ -51,11 +47,21 @@ export async function saveProject(project: {
       user_id: user.id,
       name: project.name,
       description: project.description,
-      preview_url: project.sandboxUrl,
-      sandbox_id: project.sandboxId,
     })
     .select()
     .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function getProjectZip(projectId: string): Promise<Blob> {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Not authenticated');
+
+  const { data, error } = await supabase.storage
+    .from('projects')
+    .download(`${user.id}/${projectId}/project.zip`);
 
   if (error) throw error;
   return data;
