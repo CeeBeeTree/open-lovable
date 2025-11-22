@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch", 
+      "name": "Debug Next.js",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 9229,
+      "console": "integratedTerminal",
+      "preLaunchTask": "npm: dev",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    }
+  ]
+}
