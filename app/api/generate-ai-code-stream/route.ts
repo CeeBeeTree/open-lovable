@@ -575,6 +575,13 @@ ${conversationContext}
    - New component = 2 files MAX (component + parent)
    - If >3 files, YOU'RE DOING TOO MUCH
 
+SPECIAL INSTRUCTION FOR TILDA BLOCKS:
+If the user mentions "Tilda block" or "Tilda", you should focus on creating a single, self-contained section that looks like a Tilda block.
+- Use clean, modern design.
+- Focus on the specific block type requested (e.g., "cover block", "features block", "text block").
+- Although Tilda uses its own class system, you should simulate it using standard Tailwind CSS to ensure it renders correctly in this sandbox.
+- Ensure the block is responsive.
+
 COMPONENT RELATIONSHIPS (CHECK THESE FIRST):
 - Navigation usually lives INSIDE Header.jsx, not separate Nav.jsx
 - Logo is typically in Header, not standalone
