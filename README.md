@@ -2,7 +2,7 @@
 
 Chat with AI to build React apps instantly. An example app made by the [Firecrawl](https://firecrawl.dev/?ref=open-lovable-github) team. For a complete cloud solution, check out [Lovable.dev](https://lovable.dev/) ❤️.
 
-<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZtaHFleGRsMTNlaWNydGdianI4NGQ4dHhyZjB0d2VkcjRyeXBucCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZFVLWMa6dVskQX0qu1/giphy.gif" alt="Open Lovable Demo" width="100%"/>
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExODAwZGJzcDVmZGYxc3MyNDUycTliYnAwem1qbzhtNHh0c2JrNDdmZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LMYzMkNmOecj3yFw81/giphy.gif" alt="Open Lovable Demo" width="100%"/>
 
 ## Setup
 
@@ -60,7 +60,39 @@ VERCEL_OIDC_TOKEN=auto_generated_by_vercel_env_pull
 pnpm dev  # or npm run dev / yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+---
+
+## Windows Setup Notes 🪟
+
+If you’re on Windows and see an error like:
+
+```
+Error: Cannot find module '../lightningcss.win32-x64-msvc.node'
+```
+
+This happens because the LightningCSS binary for Windows may not install correctly.
+
+**How to Fix:**
+
+```powershell
+# PowerShell
+Remove-Item -Recurse -Force node_modules
+Remove-Item -Force package-lock.json
+npm cache clean --force
+npm install lightningcss@latest --platform=win32 --arch=x64
+npm install
+npm rebuild lightningcss --force
+```
+
+After running these, try:
+
+```bash
+npm run dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## License
 
