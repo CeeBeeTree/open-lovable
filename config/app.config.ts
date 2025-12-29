@@ -47,17 +47,42 @@ export const appConfig = {
     // Working directory in sandbox
     workingDirectory: '/home/user/app',
   },
+
+  // Devbox Sandbox Configuration
+  devbox: {
+    // Sandbox timeout in minutes
+    timeoutMinutes: 30,
+
+    // Convert to milliseconds for Devbox API
+    get timeoutMs() {
+      return this.timeoutMinutes * 60 * 1000;
+    },
+
+    // Development server port (Devbox uses 5173 for Vite)
+    vitePort: 5173,
+
+    // Time to wait for Vite dev server to be ready (in milliseconds)
+    viteStartupDelay: 10000,
+
+    // Working directory in sandbox
+    workingDirectory: '/workspace',
+
+    // Default CPU and memory resources
+    defaultCpu: 1,
+    defaultMemory: 1,
+  },
   
   // AI Model Configuration
   ai: {
     // Default AI model
-    defaultModel: 'google/gemini-3-pro-preview',
+    defaultModel: 'openai/gpt-5',
     
     // Available models
     availableModels: [
       'openai/gpt-5',
       'moonshotai/kimi-k2-instruct-0905',
       'anthropic/claude-sonnet-4-20250514',
+      'google/gemini-3-flash',
       'google/gemini-3-pro-preview'
     ],
     
@@ -66,6 +91,7 @@ export const appConfig = {
       'openai/gpt-5': 'GPT-5',
       'moonshotai/kimi-k2-instruct-0905': 'Kimi K2 (Groq)',
       'anthropic/claude-sonnet-4-20250514': 'Sonnet 4',
+      'google/gemini-3-flash': 'Gemini 3 Flash',
       'google/gemini-3-pro-preview': 'Gemini 3 Pro (Preview)'
     } as Record<string, string>,
     
