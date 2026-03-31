@@ -239,7 +239,15 @@ export default function LivePreviewFrame({
         } catch (e) {
           // Try to use raw data as fallback if JSON parsing fails
           if (typeof event.data === "string") {
-            setImageSrc(event.data);
+            const dataStr = event.data as string;
+            // Only accept safe image sources as a fallback
+            if (
+              dataStr.startsWith("data:image/") ||
+              dataStr.startsWith("https://") ||
+              dataStr.startsWith("http://")
+            ) {
+              setImageSrc(dataStr);
+            }
           }
         }
       });
