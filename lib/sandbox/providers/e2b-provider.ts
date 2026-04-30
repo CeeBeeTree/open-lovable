@@ -119,17 +119,21 @@ export class E2BProvider extends SandboxProvider {
       await (this.sandbox as any).files.write(fullPath, Buffer.from(content));
     } else {
       // Fallback to Python code execution
+      // Use JSON.stringify on path/content to safely encode them as Python string literals
+      // (JSON string syntax is a subset of Python string syntax), preventing code injection.
+      const pyPath = JSON.stringify(fullPath);
+      const pyContent = JSON.stringify(content);
       await this.sandbox.runCode(`
         import os
 
         # Ensure directory exists
-        dir_path = os.path.dirname("${fullPath}")
+        dir_path = os.path.dirname(${pyPath})
         os.makedirs(dir_path, exist_ok=True)
 
         # Write file
-        with open("${fullPath}", 'w') as f:
-            f.write(${JSON.stringify(content)})
-        print(f"✓ Written: ${fullPath}")
+        with open(${pyPath}, 'w') as f:
+            f.write(${pyContent})
+        print("\u2713 Written: " + ${pyPath})
       `);
     }
     
@@ -142,9 +146,17 @@ export class E2BProvider extends SandboxProvider {
     }
 
     const fullPath = path.startsWith('/') ? path : `/home/user/app/${path}`;
-    
+
+    // Prefer the E2B filesystem API to avoid string-interpolating untrusted paths into Python source.
+    if ((this.sandbox as any).files && typeof (this.sandbox as any).files.read === 'function') {
+      const content = await (this.sandbox as any).files.read(fullPath);
+      return typeof content === 'string' ? content : Buffer.from(content).toString('utf-8');
+    }
+
+    // Fallback: encode path as a JSON string literal (safe Python string literal subset).
+    const pyPath = JSON.stringify(fullPath);
     const result = await this.sandbox.runCode(`
-      with open("${fullPath}", 'r') as f:
+      with open(${pyPath}, 'r') as f:
           content = f.read()
       print(content)
     `);
@@ -171,7 +183,7 @@ export class E2BProvider extends SandboxProvider {
                   files.append(rel_path)
           return files
 
-      files = list_files("${directory}")
+      files = list_files(${JSON.stringify(directory)})
       print(json.dumps(files))
     `);
     
