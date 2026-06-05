@@ -59,6 +59,7 @@ export const appConfig = {
       'moonshotai/kimi-k2-instruct-0905',
       'anthropic/claude-sonnet-4-20250514',
       'google/gemini-3-pro-preview',
+      'minimax/MiniMax-M3',
       'minimax/MiniMax-M2.7',
       'minimax/MiniMax-M2.7-highspeed'
     ],
@@ -69,6 +70,7 @@ export const appConfig = {
       'moonshotai/kimi-k2-instruct-0905': 'Kimi K2 (Groq)',
       'anthropic/claude-sonnet-4-20250514': 'Sonnet 4',
       'google/gemini-3-pro-preview': 'Gemini 3 Pro (Preview)',
+      'minimax/MiniMax-M3': 'MiniMax-M3',
       'minimax/MiniMax-M2.7': 'MiniMax-M2.7',
       'minimax/MiniMax-M2.7-highspeed': 'MiniMax-M2.7 (High Speed)'
     } as Record<string, string>,
