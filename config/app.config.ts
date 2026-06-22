@@ -57,20 +57,14 @@ export const appConfig = {
     availableModels: [
       'qwen/qwen3-coder',
       'deepseek/deepseek-chat',
-      'openai/gpt-5',
-      'moonshotai/kimi-k2-instruct-0905',
-      'anthropic/claude-sonnet-4-20250514',
-      'google/gemini-3-pro-preview'
+      'nvidia/nemotron-3-ultra-550b-a55b:free'
     ],
     
     // Model display names
     modelDisplayNames: {
       'qwen/qwen3-coder': 'Qwen 3 Coder (Default)',
       'deepseek/deepseek-chat': 'DeepSeek Chat',
-      'openai/gpt-5': 'GPT-5',
-      'moonshotai/kimi-k2-instruct-0905': 'Kimi K2 (Groq)',
-      'anthropic/claude-sonnet-4-20250514': 'Sonnet 4',
-      'google/gemini-3-pro-preview': 'Gemini 3 Pro (Preview)'
+      'nvidia/nemotron-3-ultra-550b-a55b:free': 'Nemotron 3 Ultra (Free)'
     } as Record<string, string>,
     
     // Model API configuration

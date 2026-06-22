@@ -115,8 +115,8 @@ export function getProviderForModel(modelId: string): ProviderResolution {
     return { client, actualModel: modelId.startsWith('openrouter/') ? modelId.replace('openrouter/', '') : modelId };
   }
 
-  // Default: use Groq with modelId as-is
-  const client = getOrCreateClient('groq');
+  // Default: use OpenRouter with modelId as-is
+  const client = getOrCreateClient('openrouter');
   return { client, actualModel: modelId };
 }
 
