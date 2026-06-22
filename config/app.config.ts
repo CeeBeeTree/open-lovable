@@ -51,10 +51,12 @@ export const appConfig = {
   // AI Model Configuration
   ai: {
     // Default AI model
-    defaultModel: 'google/gemini-3-pro-preview',
+    defaultModel: 'qwen/qwen3-coder',
     
     // Available models
     availableModels: [
+      'qwen/qwen3-coder',
+      'deepseek/deepseek-chat',
       'openai/gpt-5',
       'moonshotai/kimi-k2-instruct-0905',
       'anthropic/claude-sonnet-4-20250514',
@@ -63,6 +65,8 @@ export const appConfig = {
     
     // Model display names
     modelDisplayNames: {
+      'qwen/qwen3-coder': 'Qwen 3 Coder (Default)',
+      'deepseek/deepseek-chat': 'DeepSeek Chat',
       'openai/gpt-5': 'GPT-5',
       'moonshotai/kimi-k2-instruct-0905': 'Kimi K2 (Groq)',
       'anthropic/claude-sonnet-4-20250514': 'Sonnet 4',
