@@ -8,8 +8,8 @@ Chat with AI to build React apps instantly. Built on the foundation of Open Lova
 
 1. **Clone & Install**
 ```bash
-git clone https://github.com/firecrawl/open-lovable.git
-cd open-lovable
+git clone https://github.com/firecrawl/mian-ai.git
+cd mian-ai
 pnpm install  # or npm install / yarn install
 ```
 
