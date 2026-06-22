@@ -45,7 +45,6 @@ export default function HeaderBrandKit() {
           }
         }}
       >
-        <FirecrawlIcon className="size-28 -top-2 relative" />
         <Logo />
       </Link>
 
